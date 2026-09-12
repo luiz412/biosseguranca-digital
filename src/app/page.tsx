@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 p-4 md:p-8">
       <header className="max-w-md mx-auto mb-6 text-center">
-        <h1 className="text-2xl font-bold text-slate-800">Biossegurança Digital</h1>
+        <h1 className="text-2xl font-bold text-slate-900">Biossegurança Digital</h1>
         <p className="text-sm text-slate-500">Selecione o procedimento para iniciar o checklist</p>
       </header>
 
@@ -14,12 +14,12 @@ export default function Home() {
           <Link 
             key={procedure.id} 
             href={`/checklist/${procedure.id}`}
-            className="block p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-emerald-500 transition-all"
+            className="block p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:border-blue-900 transition-all"
           >
-            <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+            <span className="text-xs font-semibold text-blue-900 bg-blue-50 px-2.5 py-1 rounded">
               {procedure.category}
             </span>
-            <h2 className="text-lg font-medium text-slate-800 mt-2">{procedure.title}</h2>
+            <h2 className="text-lg font-medium text-slate-900 mt-2">{procedure.title}</h2>
             <p className="text-xs text-slate-400 mt-1">
               {procedure.items.length} itens no checklist
             </p>

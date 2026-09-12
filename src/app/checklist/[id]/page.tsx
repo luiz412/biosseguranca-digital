@@ -13,7 +13,7 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
   const [isCompleted, setIsCompleted] = useState(false);
 
   if (!procedure) {
-    return <div className="p-4 text-center">Procedimento não encontrado.</div>;
+    return <div className="p-4 text-center text-slate-600">Procedimento não encontrado.</div>;
   }
 
   const toggleCheck = (itemId: string) => {
@@ -35,15 +35,15 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
   return (
     <main className="min-h-screen bg-slate-50 p-4 max-w-md mx-auto pb-28 relative">
       <header className="flex justify-between items-center mb-6">
-        <Link href="/" className="text-sm text-slate-500 font-medium hover:text-slate-800">
+        <Link href="/" className="text-sm text-slate-500 font-medium hover:text-slate-900">
           ← Voltar
         </Link>
-        <span className="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-full">
+        <span className="text-xs font-semibold text-blue-950 bg-blue-100 px-2.5 py-1 rounded-full">
           {completedItemsCount}/{totalItems} concluídos
         </span>
       </header>
 
-      <h1 className="text-xl font-bold text-slate-800">{procedure.title}</h1>
+      <h1 className="text-xl font-bold text-slate-900">{procedure.title}</h1>
       <p className="text-xs text-slate-500 mb-4">Marque os itens à medida que realiza o preparo</p>
 
       {/* Lista de Itens */}
@@ -52,16 +52,16 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
           <label 
             key={item.id} 
             className={`flex items-center p-3 rounded-lg border cursor-pointer transition-all ${
-              checkedItems[item.id] ? 'bg-emerald-50 border-emerald-300' : 'bg-white border-slate-200'
+              checkedItems[item.id] ? 'bg-blue-50 border-blue-900/30' : 'bg-white border-slate-200'
             }`}
           >
             <input 
               type="checkbox" 
               checked={!!checkedItems[item.id]} 
               onChange={() => toggleCheck(item.id)}
-              className="w-5 h-5 accent-emerald-600 rounded"
+              className="w-5 h-5 accent-blue-900 rounded"
             />
-            <span className={`ml-3 text-sm font-medium ${checkedItems[item.id] ? 'line-through text-slate-400' : 'text-slate-700'}`}>
+            <span className={`ml-3 text-sm font-medium ${checkedItems[item.id] ? 'line-through text-slate-400' : 'text-slate-800'}`}>
               {item.label}
             </span>
           </label>
@@ -72,13 +72,13 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 max-w-md mx-auto">
         <button
           onClick={handleFinish}
-          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 rounded-xl transition-all shadow-sm"
+          className="w-full bg-blue-900 hover:bg-blue-950 text-white font-medium py-3 rounded-xl transition-all shadow-sm"
         >
           Finalizar Checklist
         </button>
       </div>
 
-      {/* Modal: "Esqueci algo?" (Validação) */}
+      {/* Modal: Validação */}
       {showValidation && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl">
@@ -115,20 +115,20 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
         </div>
       )}
 
-      {/* Modal: Sucesso ao Finalizar */}
+      {/* Modal: Sucesso */}
       {isCompleted && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl text-center">
-            <div className="w-12 h-12 bg-emerald-100 text-emerald-600 text-2xl rounded-full flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 bg-blue-100 text-blue-900 text-2xl rounded-full flex items-center justify-center mx-auto mb-3">
               ✓
             </div>
-            <h2 className="text-lg font-bold text-slate-800 mb-1">Procedimento Validado!</h2>
+            <h2 className="text-lg font-bold text-slate-900 mb-1">Procedimento Validado!</h2>
             <p className="text-xs text-slate-500 mb-6">
               Todos os protocolos de biossegurança foram verificados com sucesso.
             </p>
             <Link
               href="/"
-              className="block w-full bg-emerald-600 text-white font-medium text-sm py-2.5 rounded-xl hover:bg-emerald-700"
+              className="block w-full bg-blue-900 text-white font-medium text-sm py-2.5 rounded-xl hover:bg-blue-950"
             >
               Voltar ao Início
             </Link>
