@@ -39,70 +39,76 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 p-4 max-w-md mx-auto pb-28 relative">
-      <header className="flex justify-between items-center mb-5">
-        <Link href="/" className="text-sm font-medium text-blue-900 flex items-center gap-1 hover:underline">
-          ← Voltar
-        </Link>
+    <main className="min-h-screen bg-slate-50 p-4 md:p-8 flex flex-col items-center pb-28">
+      <div className="w-full max-w-md md:max-w-2xl">
         
-        {/* Logo menor com circulo de fundo no cabeçalho */}
-        <div className="w-10 h-10 bg-white rounded-full p-1 shadow-sm border border-slate-200 flex items-center justify-center overflow-hidden">
-          <Image src="/logo.png" alt="Logo" width={32} height={32} className="rounded-full object-cover" />
+        {/* Cabeçalho */}
+        <header className="flex justify-between items-center mb-6 bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+          <Link href="/" className="text-sm font-medium text-blue-900 flex items-center gap-1 hover:underline">
+            ← Voltar
+          </Link>
+          
+          <div className="w-9 h-9 bg-white rounded-full p-0.5 shadow-sm border border-slate-200 flex items-center justify-center overflow-hidden">
+            <Image src="/logo.png" alt="Logo" width={30} height={30} className="rounded-full object-cover" />
+          </div>
+
+          <span className="text-xs font-semibold text-blue-950 bg-blue-100 px-3 py-1 rounded-full">
+            {completedItemsCount}/{totalItems}
+          </span>
+        </header>
+
+        <div className="mb-5">
+          <span className="text-[10px] font-bold text-blue-900 bg-blue-50 px-2.5 py-1 rounded uppercase tracking-wide">
+            {procedure.category}
+          </span>
+          <h1 className="text-xl md:text-2xl font-bold text-slate-900 mt-2 leading-snug">{procedure.title}</h1>
+          <p className="text-xs md:text-sm text-slate-500 mt-1">Marque cada item à medida que realiza a verificação</p>
         </div>
 
-        <span className="text-xs font-semibold text-blue-950 bg-blue-100 px-2.5 py-1 rounded-full">
-          {completedItemsCount}/{totalItems}
-        </span>
-      </header>
+        {/* Lista de Itens */}
+        <div className="space-y-2.5 mb-8">
+          {procedure.items.map((item) => (
+            <label 
+              key={item.id} 
+              className={`flex items-start p-3.5 rounded-xl border cursor-pointer transition-all ${
+                checkedItems[item.id] ? 'bg-blue-50/60 border-blue-900/30' : 'bg-white border-slate-200 shadow-sm hover:border-slate-300'
+              }`}
+            >
+              <input 
+                type="checkbox" 
+                checked={!!checkedItems[item.id]} 
+                onChange={() => toggleCheck(item.id)}
+                className="w-5 h-5 accent-blue-900 rounded mt-0.5 shrink-0 cursor-pointer"
+              />
+              <div className="ml-3">
+                <span className={`text-xs md:text-sm font-medium block leading-snug ${
+                  checkedItems[item.id] ? 'line-through text-slate-400' : 'text-slate-800'
+                }`}>
+                  {item.label}
+                </span>
+              </div>
+            </label>
+          ))}
+        </div>
 
-      <div className="mb-4">
-        <span className="text-[10px] font-bold text-blue-900 bg-blue-50 px-2 py-0.5 rounded uppercase">
-          {procedure.category}
-        </span>
-        <h1 className="text-lg font-bold text-slate-900 mt-1 leading-snug">{procedure.title}</h1>
-        <p className="text-xs text-slate-500 mt-0.5">Marque cada item à medida que realiza a verificação</p>
-      </div>
+        {/* Botão Fixo de Finalizar (Ajustado para PC e Celular) */}
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md border-t border-slate-200 z-10 flex justify-center">
+          <div className="w-full max-w-md md:max-w-2xl">
+            <button
+              onClick={handleFinish}
+              className="w-full bg-blue-900 hover:bg-blue-950 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md active:scale-[0.98]"
+            >
+              Finalizar Checklist
+            </button>
+          </div>
+        </div>
 
-      {/* Lista de Itens */}
-      <div className="space-y-2 mb-8">
-        {procedure.items.map((item) => (
-          <label 
-            key={item.id} 
-            className={`flex items-start p-3 rounded-lg border cursor-pointer transition-all ${
-              checkedItems[item.id] ? 'bg-blue-50/60 border-blue-900/30' : 'bg-white border-slate-200 shadow-sm'
-            }`}
-          >
-            <input 
-              type="checkbox" 
-              checked={!!checkedItems[item.id]} 
-              onChange={() => toggleCheck(item.id)}
-              className="w-5 h-5 accent-blue-900 rounded mt-0.5 shrink-0"
-            />
-            <div className="ml-3">
-              <span className={`text-xs font-medium block leading-tight ${
-                checkedItems[item.id] ? 'line-through text-slate-400' : 'text-slate-800'
-              }`}>
-                {item.label}
-              </span>
-            </div>
-          </label>
-        ))}
-      </div>
-
-      {/* Botão Fixo de Finalizar */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 max-w-md mx-auto z-10">
-        <button
-          onClick={handleFinish}
-          className="w-full bg-blue-900 hover:bg-blue-950 text-white font-semibold py-3 rounded-xl transition-all shadow-md active:scale-[0.98]"
-        >
-          Finalizar Checklist
-        </button>
       </div>
 
       {/* Modal de Validação */}
       {showValidation && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl p-5 max-w-sm w-full shadow-2xl">
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl">
             <h2 className="text-base font-bold text-amber-600 mb-1 flex items-center gap-1.5">
               ⚠️ Atenção: Itens Pendentes
             </h2>
