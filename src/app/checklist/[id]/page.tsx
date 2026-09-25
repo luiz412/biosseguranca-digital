@@ -44,7 +44,12 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
         <Link href="/" className="text-sm font-medium text-blue-900 flex items-center gap-1 hover:underline">
           ← Voltar
         </Link>
-        <Image src="/logo.png" alt="Logo" width={36} height={36} />
+        
+        {/* Logo menor com circulo de fundo no cabeçalho */}
+        <div className="w-10 h-10 bg-white rounded-full p-1 shadow-sm border border-slate-200 flex items-center justify-center overflow-hidden">
+          <Image src="/logo.png" alt="Logo" width={32} height={32} className="rounded-full object-cover" />
+        </div>
+
         <span className="text-xs font-semibold text-blue-950 bg-blue-100 px-2.5 py-1 rounded-full">
           {completedItemsCount}/{totalItems}
         </span>
@@ -94,7 +99,7 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
         </button>
       </div>
 
-      {/* Modal de Validação: Itens Pendentes */}
+      {/* Modal de Validação */}
       {showValidation && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl p-5 max-w-sm w-full shadow-2xl">

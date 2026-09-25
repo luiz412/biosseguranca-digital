@@ -6,14 +6,18 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 p-4 md:p-8">
       <header className="max-w-md mx-auto mb-6 text-center flex flex-col items-center">
-        <Image
-          src="/logo.png"
-          alt="Biossegurança Digital"
-          width={130}
-          height={130}
-          className="mb-3 drop-shadow-sm"
-          priority
-        />
+        {/* Container circular com fundo branco e sombra para a logo */}
+        <div className="w-32 h-32 bg-white rounded-full p-2 shadow-md mb-3 flex items-center justify-center border border-slate-200 overflow-hidden">
+          <Image
+            src="/logo.png"
+            alt="Biossegurança Digital"
+            width={120}
+            height={120}
+            className="rounded-full object-cover"
+            priority
+          />
+        </div>
+        
         <h1 className="text-2xl font-bold text-blue-950">Biossegurança Digital</h1>
         <p className="text-xs text-slate-500 mt-1">Checklists Clínicos de Dentística</p>
       </header>
