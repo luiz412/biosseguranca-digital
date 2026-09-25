@@ -139,7 +139,7 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
         {step === 1 && (
           <div className="space-y-2.5 mb-8">
             <h2 className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
-              🛡️ Pré-requisitos Gerais (Ambiente & Barreiras)
+              🛡️ Pré-requisitos Gerais
             </h2>
             {PREREQUISITES.map((item) => (
               <label 

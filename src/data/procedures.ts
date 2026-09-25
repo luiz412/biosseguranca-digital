@@ -172,3 +172,139 @@ export const PROCEDURES: Procedure[] = [
     ],
   },
 ];
+
+// --- PROFILAXIA ODONTOLÓGICA ---
+{
+  id: 'profilaxia-odontologica',
+  title: 'Profilaxia Odontológica',
+  category: 'Profilaxia',
+  items: [
+    { id: 'prof-1', label: 'Separar instrumentais: Espelho, Sonda exploratória, Pinça clínica, Sonda periodontal, Instrumentais manuais de raspagem, Taça de borracha/escova de Robinson e Contra-ângulo' },
+    { id: 'prof-2', label: 'Separar materiais: Pasta profilática, Fio dental, Gaze, Copos descartáveis e Solução de limpeza' },
+    { id: 'prof-3', label: 'Antes de iniciar: Confirmar identificação do paciente, indicação clínica e realizar avaliação inicial (biofilme, cálculo, manchas e sensibilidade)' },
+    { id: 'prof-4', label: 'Posicionar o paciente adequadamente e realizar limpeza/higiene inicial' },
+    { id: 'prof-5', label: 'Realizar remoção de cálculo quando indicada' },
+    { id: 'prof-6', label: 'Realizar profilaxia com instrumento rotatório e pasta profilática em movimentos controlados' },
+    { id: 'prof-7', label: 'Limpeza de regiões de difícil acesso e passar fio dental nas regiões interproximais' },
+    { id: 'prof-8', label: 'Irrigar, enxaguar e remover resíduos; conferir visualmente as superfícies dentárias' },
+    { id: 'prof-9', label: 'Orientações ao paciente: Higiene diária, técnica de escovação, uso de fio dental e cuidados alimentares' },
+    { id: 'prof-10', label: 'Conferência final: Organizar campo operatório, encaminhar instrumentais para esterilização e registrar no prontuário' }
+  ]
+},
+
+// --- CIRURGIA ODONTOLÓGICA / EXODONTIAS BÁSICAS ---
+{
+  id: 'exodontia-anteriores-superiores',
+  title: 'Exodontia de Dentes Permanentes Anteriores Superiores',
+  category: 'Cirurgia',
+  items: [
+    { id: 'exo-ans-1', label: 'Separar instrumentais: Espelho, Sonda, Pinça, Descolador/Periótomo, Elevador reto, Fórceps adequado, Cureta alveolar, Porta-agulha, Tesoura e Carpule' },
+    { id: 'exo-ans-2', label: 'Separar materiais: Anestésico tópico/local, Gaze estéril, Solução para irrigação e Fio de sutura' },
+    { id: 'exo-ans-3', label: 'Confirmar indicação, avaliação clínica/radiográfica e conferir dente a ser removido' },
+    { id: 'exo-ans-4', label: 'Realizar anestesia tópica e local; confirmar anestesia profunda antes de iniciar' },
+    { id: 'exo-ans-5', label: 'Realizar sindesmotomia e luxação progressiva com instrumento adequado' },
+    { id: 'exo-ans-6', label: 'Adaptar fórceps e realizar movimentos controlados conforme a anatomia radicular até a remoção' },
+    { id: 'exo-ans-7', label: 'Inspecionar dente removido, avaliar alvéolo, irrigar e realizar curetagem se houver indicação' },
+    { id: 'exo-ans-8', label: 'Realizar sutura (se indicada) e promover hemostasia por compressão com gaze' },
+    { id: 'exo-ans-9', label: 'Prescrever medicações (se necessário), orientar cuidados pós-operatórios e registrar no prontuário' }
+  ]
+},
+{
+  id: 'exodontia-anteriores-inferiores',
+  title: 'Exodontia de Dentes Permanentes Anteriores Inferiores',
+  category: 'Cirurgia',
+  items: [
+    { id: 'exo-ani-1', label: 'Separar instrumentais e materiais específicos para anteriores inferiores' },
+    { id: 'exo-ani-2', label: 'Confirmar avaliação clínica/radiográfica e elemento dental correto' },
+    { id: 'exo-ani-3', label: 'Executar técnica anestésica e confirmar anestesia adequada' },
+    { id: 'exo-ani-4', label: 'Realizar sindesmotomia, luxação progressiva e adaptar fórceps específico' },
+    { id: 'exo-ani-5', label: 'Executar movimentos compatíveis com a anatomia e remover o dente' },
+    { id: 'exo-ani-6', label: 'Conferir integridade do dente, avaliar alvéolo, irrigar e suturar se necessário' },
+    { id: 'exo-ani-7', label: 'Promover hemostasia por compressão e verificar sítio cirúrgico' },
+    { id: 'exo-ani-8', label: 'Fornecer orientações pós-operatórias (reposo, alimentação, higiene) e registrar em prontuário' }
+  ]
+},
+{
+  id: 'exodontia-pre-molares-superiores',
+  title: 'Exodontia de Pré-Molares Superiores',
+  category: 'Cirurgia',
+  items: [
+    { id: 'exo-pms-1', label: 'Separar kit cirúrgico e fórceps específico para pré-molares superiores' },
+    { id: 'exo-pms-2', label: 'Confirmar diagnóstico radiográfico do elemento e anestesiar' },
+    { id: 'exo-pms-3', label: 'Sindesmotomia e luxação progressiva com elevador reto' },
+    { id: 'exo-pms-4', label: 'Aplicações de forças controladas com fórceps respeitando a anatomia das raízes' },
+    { id: 'exo-pms-5', label: 'Remoção do dente, inspeção de integridade radicular e inspeção do alvéolo' },
+    { id: 'exo-pms-6', label: 'Irrigação, sutura (se indicada) e hemostasia com compressa de gaze' },
+    { id: 'exo-pms-7', label: 'Passar recomendações pós-operatórias ao paciente e registrar o procedimento' }
+  ]
+},
+{
+  id: 'exodontia-pre-molares-inferiores',
+  title: 'Exodontia de Pré-Molares Inferiores',
+  category: 'Cirurgia',
+  items: [
+    { id: 'exo-pmi-1', label: 'Separar instrumentais e fórceps específico para pré-molares inferiores' },
+    { id: 'exo-pmi-2', label: 'Conferir radiografia, dente correto e realizar anestesia local' },
+    { id: 'exo-pmi-3', label: 'Realizar desinserção das fibras (sindesmotomia) e luxação' },
+    { id: 'exo-pmi-4', label: 'Adaptar fórceps e realizar movimentos adequados à anatomia radicular' },
+    { id: 'exo-pmi-5', label: 'Extração do dente, avaliação alveolar e remoção de fragmentos/tecido se indicado' },
+    { id: 'exo-pmi-6', label: 'Irrigação com solução estéril, hemostasia e sutura quando necessária' },
+    { id: 'exo-pmi-7', label: 'Orientar cuidados com o coágulo/medicação e fazer registro no prontuário' }
+  ]
+},
+{
+  id: 'exodontia-molares-superiores',
+  title: 'Exodontia de Molares Superiores',
+  category: 'Cirurgia',
+  items: [
+    { id: 'exo-ms-1', label: 'Separar elevadores e fórceps específico para molares superiores (direito/esquerdo)' },
+    { id: 'exo-ms-2', label: 'Avaliar proximidade com o seio maxilar na radiografia e realizar anestesia' },
+    { id: 'exo-ms-3', label: 'Sindesmotomia cuidadosa e luxação progressiva com alavancas/elevadores' },
+    { id: 'exo-ms-4', label: 'Adaptar fórceps de molares e realizar movimentos vestíbulo-palatinos controlados' },
+    { id: 'exo-ms-5', label: 'Remoção do elemento e conferência minuciosa da integridade das 3 raízes' },
+    { id: 'exo-ms-6', label: 'Avaliação do alvéolo, irrigação abundante, sutura e hemostasia por compressão' },
+    { id: 'exo-ms-7', label: 'Orientar o paciente sobre cuidados pós-cirúrgicos e registrar em prontuário' }
+  ]
+},
+{
+  id: 'exodontia-molares-inferiores',
+  title: 'Exodontia de Molares Inferiores',
+  category: 'Cirurgia',
+  items: [
+    { id: 'exo-mi-1', label: 'Separar fórceps de molares inferiores (ex: nº 17 ou cuerno de vaca / nº 23) e elevadores' },
+    { id: 'exo-mi-2', label: 'Avaliação clínica/radiográfica da anatomia radicular e anestesia local' },
+    { id: 'exo-mi-3', label: 'Sindesmotomia, luxação com elevador e adaptação do fórceps' },
+    { id: 'exo-mi-4', label: 'Movimentos vestíbulo-linguais controlados até a extração completa' },
+    { id: 'exo-mi-5', label: 'Conferir integridade das raízes, inspecionar alvéolo e irrigar' },
+    { id: 'exo-mi-6', label: 'Sutura (se necessária) e compressão com gaze para hemostasia' },
+    { id: 'exo-mi-7', label: 'Prescrição de medicação, orientações pós-operatórias e anotação em prontuário' }
+  ]
+},
+{
+  id: 'exodontia-dentes-deciduos',
+  title: 'Exodontia de Dentes Decíduos',
+  category: 'Cirurgia Pediatria',
+  items: [
+    { id: 'exo-dec-1', label: 'Separar fórceps infantil, elevador pequeno e kit de anestesia' },
+    { id: 'exo-dec-2', label: 'Avaliar estágio de esfoliação e relação com o germe do permanente (radiografia)' },
+    { id: 'exo-dec-3', label: 'Realizar anestesia tópica e local com dosagem infantil adequada' },
+    { id: 'exo-dec-4', label: 'Sindesmotomia leve e luxação controlada respeitando a anatomia do decíduo' },
+    { id: 'exo-dec-5', label: 'Adaptação do fórceps infantil e remoção do dente sem danificar o sucessor' },
+    { id: 'exo-dec-6', label: 'Inspeção do alvéolo, verificação de fragmentos e hemostasia com gaze' },
+    { id: 'exo-dec-7', label: 'Reforçar orientações pós-operatórias ao responsável e registrar no prontuário' }
+  ]
+},
+{
+  id: 'exodontia-terceiro-molar-superior-simples',
+  title: 'Exodontia de Terceiro Molar Superior Erupcionado Simples',
+  category: 'Cirurgia',
+  items: [
+    { id: 'exo-3m-1', label: 'Separar fórceps para 3º molar superior (ex: nº 210 ou bajoneta) e alavancas' },
+    { id: 'exo-3m-2', label: 'Confirmar que o dente está erupcionado e sem necessidade de osteotomia/odontosecção' },
+    { id: 'exo-3m-3', label: 'Anestesia infiltrativa/bloqueio eficiente da região' },
+    { id: 'exo-3m-4', label: 'Sindesmotomia e luxação com elevadores adequados ao acesso posterior' },
+    { id: 'exo-3m-5', label: 'Aplicações de forças de apreensão com fórceps e remoção do dente' },
+    { id: 'exo-3m-6', label: 'Conferir dente e alvéolo, irrigar, suturar se necessário e promover hemostasia' },
+    { id: 'exo-3m-7', label: 'Instruções pós-operatórias, prescrição medicamentosa e registro em prontuário' }
+  ]
+}
