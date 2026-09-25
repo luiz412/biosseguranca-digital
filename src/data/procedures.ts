@@ -13,6 +13,26 @@ export interface Procedure {
 
 export const PROCEDURES: Procedure[] = [
   {
+  id: 'checklist-geral-pre-procedimento',
+  title: 'Checklist Geral Pré-Procedimento (Biossegurança e Ambiente)',
+  category: 'Geral',
+  items: [
+    { id: 'gen-1', label: 'Paramentação inicial: Vestir touca e propé', category: 'Sequência' },
+    { id: 'gen-2', label: 'Calçar luva de borracha para iniciar a desinfecção do ambiente (álcool 70% e gaze/papel toalha)', category: 'Sequência' },
+    { id: 'gen-3', label: 'Realizar limpeza do equipo e da cuspideira (com detergente enzimático)', category: 'Sequência' },
+    { id: 'gen-4', label: 'Verificar reservatório de água, funcionamento do sugador e mangueiras do kit acadêmico', category: 'Sequência' },
+    { id: 'gen-5', label: 'Barreira plástica: Encosto da cadeira e encosto de cabeça', category: 'Material' },
+    { id: 'gen-6', label: 'Barreira plástica: Bandeja do equipo, mesa auxiliar e braço da cadeira', category: 'Material' },
+    { id: 'gen-7', label: 'Barreira plástica: Regulador do mocho e gorro no refletor', category: 'Material' },
+    { id: 'gen-8', label: 'Barreira plástica: Plástico de geladinho no sugador, seringa tríplice e kit acadêmico', category: 'Material' },
+    { id: 'gen-9', label: 'Acoplar canudinho na ponta da seringa tríplice', category: 'Material' },
+    { id: 'gen-10', label: 'Deixar bancada pronta com o material necessário e ambiente organizado', category: 'Sequência' },
+    { id: 'gen-11', label: 'Lavar as mãos rigorosamente', category: 'Sequência' },
+    { id: 'gen-12', label: 'Paramentação completa de atendimento: Jaleco, máscara, óculos de proteção e luvas de procedimento', category: 'Sequência' },
+    { id: 'gen-13', label: 'Pronto para iniciar o atendimento ao paciente', category: 'Conferência' },
+  ],
+},
+  {
     id: 'restauracao-classe-1',
     title: 'Restauração Direta em Resina Composta - Classe I',
     category: 'Dentística',
