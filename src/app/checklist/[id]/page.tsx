@@ -39,7 +39,7 @@ export default function ChecklistPage({ params }: { params: Promise<{ id: string
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 p-4 md:p-8 flex flex-col items-center pb-28">
+    <main className="min-h-screen bg-slate-50 p-4 md:p-8 flex flex-col items-center pb-36 md:pb-40">
       <div className="w-full max-w-md md:max-w-2xl">
         
         {/* Cabeçalho */}
