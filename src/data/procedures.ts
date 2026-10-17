@@ -1,310 +1,428 @@
-export interface ChecklistItem {
+export interface StepItem {
   id: string;
-  label: string;
-  category: 'Instrumental' | 'Material' | 'Sequência' | 'Conferência';
+  text: string;
 }
 
 export interface Procedure {
   id: string;
   title: string;
   category: string;
-  items: ChecklistItem[];
+  materials: string[]; // Pré-requisitos (materiais e EPIs)
+  steps: StepItem[];   // Checklist clínico operacional
 }
 
 export const PROCEDURES: Procedure[] = [
+  // --- DENTÍSTICA (1 a 5) ---
   {
-    id: 'restauracao-classe-1',
+    id: 'restauracao-classe-i',
     title: 'Restauração Direta em Resina Composta - Classe I',
     category: 'Dentística',
-    items: [
-      { id: '1-1', label: 'Separar: Espelho, Sonda, Pinça clínica e Colher de dentina', category: 'Instrumental' },
-      { id: '1-2', label: 'Separar: Rotatórios, Brocas, Espátula de resina, Instrumento de inserção e Polimento', category: 'Instrumental' },
-      { id: '1-3', label: 'Separar: Papel carbono, Seringa tríplice, Sucção, Carpule e Agulha', category: 'Instrumental' },
-      { id: '1-4', label: 'Materiais: Resina composta, Sistema adesivo e Ácido gravador', category: 'Material' },
-      { id: '1-5', label: 'Materiais: Isolamento do campo operatório e Proteção dentino-pulpar (se indicada)', category: 'Material' },
-      { id: '1-6', label: 'Confirmar checklist geral pré-procedimento concluído', category: 'Sequência' },
-      { id: '1-7', label: 'Selecionar cor da resina (antes do isolamento)', category: 'Sequência' },
-      { id: '1-8', label: 'Realizar anestesia local (se indicada) e Isolamento do campo operatório', category: 'Sequência' },
-      { id: '1-9', label: 'Preparo cavitário / Remoção de tecido comprometido', category: 'Sequência' },
-      { id: '1-10', label: 'Limpeza da cavidade e Proteção dentino-pulpar (se indicada)', category: 'Sequência' },
-      { id: '1-11', label: 'Condicionamento ácido, Lavagem e Aplicação do Sistema Adesivo', category: 'Sequência' },
-      { id: '1-12', label: 'Fotoativação do adesivo e Inserção de resina em incrementos com fotoativação', category: 'Sequência' },
-      { id: '1-13', label: 'Escultura anatômica, Acabamento e Polimento', category: 'Sequência' },
-      { id: '1-14', label: 'Ajuste oclusal com papel carbono, Remoção do isolamento e Limpeza final', category: 'Sequência' },
-      { id: '1-15', label: 'Conferência: Instrumentais e materiais conferidos e organizados', category: 'Conferência' },
+    materials: [
+      'Kit clínico (Espelho, pinça clínica, sonda exploradora)',
+      'EPIs completos (Luvas, máscara N95/PFF2, gorro, óculos e avental)',
+      'Barreiras plásticas de proteção mecânica',
+      'Kit de isolamento absoluto (Lençol de borracha, arco de Young, perfurador, pinça e grampos 200 a 205)',
+      'Brocas diamantadas e esféricas (alta e baixa rotação)',
+      'Ácido fosfórico 37% e sistema adesivo',
+      'Resina composta e espátulas de inserção/esculpimento',
+      'Fotopolimerizador',
+      'Carbono de articulação e pinça Miller',
+      'Tiras de lixa e discos de polimento'
     ],
+    steps: [
+      { id: 'cli-s1', text: 'Anamnese, exame clínico e seleção de cor da resina' },
+      { id: 'cli-s2', text: 'Anestesia local e isolamento absoluto do campo operatório' },
+      { id: 'cli-s3', text: 'Preparo cavitário e remoção do tecido cariado' },
+      { id: 'cli-s4', text: 'Condicionamento ácido (20s em esmalte, 15s em dentina) e lavagem abundante' },
+      { id: 'cli-s5', text: 'Secagem suave, aplicação do adesivo e fotopolimerização' },
+      { id: 'cli-s6', text: 'Inserção incremental da resina composta (camadas de no máximo 2mm) com fotopolimerização de cada incremento' },
+      { id: 'cli-s7', text: 'Checagem oclusal com filme de carbono' },
+      { id: 'cli-s8', text: 'Acabamento e polimento final' }
+    ]
   },
   {
-    id: 'restauracao-classe-2',
+    id: 'restauracao-classe-ii',
     title: 'Restauração Direta em Resina Composta - Classe II',
     category: 'Dentística',
-    items: [
-      { id: '2-1', label: 'Separar: Espelho, Sonda, Pinça, Colher de dentina, Rotatórios e Brocas', category: 'Instrumental' },
-      { id: '2-2', label: 'Separar: Espátula, Instrumento de inserção, Sistema de matriz, Porta-matriz e Cunhas', category: 'Instrumental' },
-      { id: '2-3', label: 'Separar: Tiras abrasivas, Polimento, Papel carbono, Seringa tríplice, Sucção e Anestesia', category: 'Instrumental' },
-      { id: '2-4', label: 'Materiais: Resina, Sistema adesivo, Ácido, Isolamento, Matriz, Cunha e Proteção pulpar', category: 'Material' },
-      { id: '2-5', label: 'Confirmar checklist pré-procedimento e Selecionar cor antes do isolamento', category: 'Sequência' },
-      { id: '2-6', label: 'Anestesia local, Isolamento do campo e Remoção do tecido comprometido/restauração antiga', category: 'Sequência' },
-      { id: '2-7', label: 'Adaptar matriz e cunha para reconstrução do ponto de contato proximal', category: 'Sequência' },
-      { id: '2-8', label: 'Condicionamento ácido, Aplicação do Adesivo e Fotoativação', category: 'Sequência' },
-      { id: '2-9', label: 'Reconstrução da parede proximal e Incrementos de resina fotoativados', category: 'Sequência' },
-      { id: '2-10', label: 'Remoção de matriz/cunha, Verificação de ponto de contato e Adaptação marginal', category: 'Sequência' },
-      { id: '2-11', label: 'Acabamento, Polimento, Tira abrasiva proximal e Checagem oclusal com carbono', category: 'Sequência' },
-      { id: '2-12', label: 'Conferência: Etapas validadas e Campo/Paciente organizados', category: 'Conferência' },
+    materials: [
+      'Kit clínico (Espelho, pinça clínica, sonda exploradora)',
+      'EPIs completos e barreiras de proteção',
+      'Matriz metálica/seccional, cunhas de madeira e anel fixador',
+      'Kit de isolamento absoluto completo',
+      'Brocas diamantadas e esféricas',
+      'Ácido fosfórico 37%, sistema adesivo e resina composta',
+      'Fotopolimerizador',
+      'Tiras de lixa interproximais e discos de acabamento',
+      'Carbono de articulação e pinça Miller'
     ],
+    steps: [
+      { id: 'clii-s1', text: 'Anestesia local e seleção da cor sob luz natural' },
+      { id: 'clii-s2', text: 'Isolamento absoluto do campo operatório' },
+      { id: 'clii-s3', text: 'Preparo da cavidade proximal e remoção da lesão' },
+      { id: 'clii-s4', text: 'Adaptação da matriz seccional e cunha de madeira no espaço interproximal' },
+      { id: 'clii-s5', text: 'Ataque ácido, sistema adesivo e fotopolimerização' },
+      { id: 'clii-s6', text: 'Transformação da cavidade Classe II em Classe I construindo a crista marginal' },
+      { id: 'clii-s7', text: 'Preenchimento incremental da cavidade oclusal' },
+      { id: 'clii-s8', text: 'Remoção do isolamento, ajuste oclusal e polimento interproximal com tiras de lixa' }
+    ]
   },
   {
-    id: 'restauracao-classe-3',
+    id: 'restauracao-classe-iii',
     title: 'Restauração Direta em Resina Composta - Classe III',
     category: 'Dentística',
-    items: [
-      { id: '3-1', label: 'Separar: Espelho, Sonda, Pinça, Colher de dentina, Brocas e Espátula de resina', category: 'Instrumental' },
-      { id: '3-2', label: 'Separar: Matriz para dentes anteriores, Cunhas, Tiras abrasivas e Discos de polimento', category: 'Instrumental' },
-      { id: '3-3', label: 'Materiais: Resina composta, Adesivo, Ácido, Isolamento e Caracterizadores estéticos', category: 'Material' },
-      { id: '3-4', label: 'Seleção de cor antes do isolamento e Anestesia local (se indicada)', category: 'Sequência' },
-      { id: '3-5', label: 'Isolamento do campo operatório e Preparo da cavidade', category: 'Sequência' },
-      { id: '3-6', label: 'Posicionamento de matriz/cunha para controle do contorno proximal', category: 'Sequência' },
-      { id: '3-7', label: 'Adesão (Ácido + Adesivo + Fotoativação)', category: 'Sequência' },
-      { id: '3-8', label: 'Inserção incremental da resina, Escultura e Fotoativação de cada camada', category: 'Sequência' },
-      { id: '3-9', label: 'Acabamento com tiras abrasivas proximais e Integração estética final', category: 'Sequência' },
-      { id: '3-10', label: 'Conferência: Procedimento finalizado e ambiente limpo', category: 'Conferência' },
+    materials: [
+      'Kit clínico e EPIs completos',
+      'Fita matriz de poliéster e cunhas de madeira transparentes/anatômicas',
+      'Kit de isolamento absoluto',
+      'Brocas diamantadas para acesso palatino/lingual',
+      'Ácido 37%, adesivo, resina de opaco/dentina/esmalte',
+      'Fotopolimerizador e tiras de lixa de poliéster'
     ],
+    steps: [
+      { id: 'cliii-s1', text: 'Seleção de cor da resina (esmalte e dentina) e anestesia local' },
+      { id: 'cliii-s2', text: 'Isolamento absoluto e acesso cavitário (preferencialmente por palatino/lingual)' },
+      { id: 'cliii-s3', text: 'Remoção da cárie e confecção de bisel em esmalte na face vestibular' },
+      { id: 'cliii-s4', text: 'Colocação da tira de poliéster e cunha de madeira' },
+      { id: 'cliii-s5', text: 'Condicionamento ácido, aplicação do adesivo e fotopolimerização' },
+      { id: 'cliii-s6', text: 'Reconstrução da concha palatina e estratificação de dentina e esmalte' },
+      { id: 'cliii-s7', text: 'Remoção da matriz, checagem oclusal e polimento interproximal' }
+    ]
   },
   {
-    id: 'restauracao-classe-4',
+    id: 'restauracao-classe-iv',
     title: 'Restauração Direta em Resina Composta - Classe IV',
     category: 'Dentística',
-    items: [
-      { id: '4-1', label: 'Separar: Espelho, Sonda, Pinça, Rotatórios e Espátula de inserção', category: 'Instrumental' },
-      { id: '4-2', label: 'Separar: Matriz anterior, Guia palatina/silicone, Discos, Borrachas e Tiras abrasivas', category: 'Instrumental' },
-      { id: '4-3', label: 'Materiais: Resina com diferentes opacidades/translucidez, Adesivo, Ácido e Isolamento', category: 'Material' },
-      { id: '4-4', label: 'Seleção detalhada de cor antes do isolamento', category: 'Sequência' },
-      { id: '4-5', label: 'Isolamento do campo e Preparo do bisel/margens da fratura', category: 'Sequência' },
-      { id: '4-6', label: 'Posicionamento da guia palatina de silicone e protocolo adesivo completo', category: 'Sequência' },
-      { id: '4-7', label: 'Reconstrução da parede palatina em resina e camada de dentina/esmalte', category: 'Sequência' },
-      { id: '4-8', label: 'Escultura da borda incisal e anatomia superficial com fotoativação incremental', category: 'Sequência' },
-      { id: '4-9', label: 'Acabamento, Polimento de alto brilho e Checagem de movimentos excursivos', category: 'Sequência' },
-      { id: '4-10', label: 'Conferência: Simetria, proporção e protocolos concluídos', category: 'Conferência' },
+    materials: [
+      'Kit clínico, EPIs completos e escala de cor VITA/Customizada',
+      'Guia de silicone (muralha) confeccionada previamente',
+      'Kit de isolamento absoluto ou relativo com afastador labial',
+      'Brocas para bisel longo e acabamento',
+      'Ácido 37%, adesivo e resinas de opaco, dentina, esmalte e efeito',
+      'Discos Sof-Lex, pontas de borracha e pastas de polimento de diamante'
     ],
+    steps: [
+      { id: 'cliv-s1', text: 'Seleção criteriosa de cores e tomada de impressão para muralha de silicone' },
+      { id: 'cliv-s2', text: 'Anestesia local e isolamento do campo operatório' },
+      { id: 'cliv-s3', text: 'Preparo da cavidade e confecção de bisel longo e infinito na margem de esmalte' },
+      { id: 'cliv-s4', text: 'Condicionamento ácido, adesivo e confecção da concha palatina com a muralha de silicone' },
+      { id: 'cliv-s5', text: 'Estratificação incremental (mamelões de dentina, opalescência e camada final de esmalte)' },
+      { id: 'cliv-s6', text: 'Fotopolimerização final e escultura de macro e microtextura' },
+      { id: 'cliv-s7', text: 'Ajuste oclusal em máxima intercuspidação e guia anterior' },
+      { id: 'cliv-s8', text: 'Acabamento e polimento de alto brilho' }
+    ]
   },
   {
-    id: 'restauracao-classe-5',
-    title: 'Restauração Direta em Resina Composta - Classe V',
+    id: 'restauracao-classe-v',
+    title: 'Restauração de Lesão Cervical (Classe V / LCNC)',
     category: 'Dentística',
-    items: [
-      { id: '5-1', label: 'Separar: Espelho, Sonda, Pinça, Colher de dentina, Brocas e Espátula de resina', category: 'Instrumental' },
-      { id: '5-2', label: 'Separar: Instrumentos para acabamento cervical, Seringa tríplice e Sucção', category: 'Instrumental' },
-      { id: '5-3', label: 'Materiais: Resina, Sistema adesivo, Ácido e Material para controle de umidade/afastamento', category: 'Material' },
-      { id: '5-4', label: 'Seleção de cor, Anestesia e Isolamento com rigoroso controle de umidade', category: 'Sequência' },
-      { id: '5-5', label: 'Limpeza e preparo cavitário / Remoção do tecido comprometido', category: 'Sequência' },
-      { id: '5-6', label: 'Protocolo adesivo (Condicionamento + Adesivo + Fotoativação)', category: 'Sequência' },
-      { id: '5-7', label: 'Inserção, modelagem do contorno cervical e fotoativação', category: 'Sequência' },
-      { id: '5-8', label: 'Remoção de excessos subgengivais, Acabamento e Polimento fino', category: 'Sequência' },
-      { id: '5-9', label: 'Conferência: Adaptação marginal verificada e higienização do local', category: 'Conferência' },
+    materials: [
+      'Kit clínico e EPIs completos',
+      'Fio retrator gengival (000 ou 00) e hemostático (se necessário)',
+      'Brocas esféricas e diamantadas delicadas',
+      'Ácido 37%, adesivo autocondicionante/universal e resina fluida/microhíbrida',
+      'Espátulas de resina delicadas e fotopolimerizador',
+      'Borrachas de polimento cervical'
     ],
+    steps: [
+      { id: 'clv-s1', text: 'Profilaxia do dente e seleção da cor na região cervical' },
+      { id: 'clv-s2', text: 'Anestesia local e inserção do fio retrator no sulco gengival' },
+      { id: 'clv-s3', text: 'Limpeza da cavidade/lesão e microabrasão (se necessário)' },
+      { id: 'clv-s4', text: 'Hibridização (ataque ácido seletivo em esmalte e sistema adesivo)' },
+      { id: 'clv-s5', text: 'Inserção de resina fluida na parede profunda e resina composta na superfície' },
+      { id: 'clv-s6', text: 'Fotopolimerização e escultura da anatomia cervical' },
+      { id: 'clv-s7', text: 'Remoção do fio retrator e acabamento cervical cuidadoso sem agredir o periodonto' }
+    ]
+  },
+
+  // --- PERIODONTIA (6 e 7) ---
+  {
+    id: 'profilaxia-odontologica',
+    title: 'Profilaxia Odontológica e Raspagem',
+    category: 'Periodontia',
+    materials: [
+      'EPIs completos com proteção facial/óculos e avental impermeável',
+      'Bochecho prévio de Clorexidina 0,12%',
+      'Kit clínico e sonda periodontal milimetrada',
+      'Aparelho de Ultrassom com pontas ultrassônicas esterilizadas',
+      'Conjunto de curetas de Gracey e McCall',
+      'Taça de borracha, escova de Robinson e pasta profilática',
+      'Fio dental e flúor gel/verniz'
+    ],
+    steps: [
+      { id: 'prof-s1', text: 'Exame clínico e periograma inicial' },
+      { id: 'prof-s2', text: 'Remoção de cálculo supra e subgengival com ultrassom e curetas' },
+      { id: 'prof-s3', text: 'Polimento coronário com pasta profilática e taça de borracha' },
+      { id: 'prof-s4', text: 'Passagem de fio dental interproximal' },
+      { id: 'prof-s5', text: 'Aplicação tópica de flúor e orientação de higiene oral' }
+    ]
   },
   {
-    id: 'restauracao-estetica-anterior',
-    title: 'Restauração Estética Anterior em Resina Composta',
-    category: 'Dentística',
-    items: [
-      { id: '6-1', label: 'Separar: Kit clínico, Espátulas de estética, Guia de silicone e Matrizes anteriores', category: 'Instrumental' },
-      { id: '6-2', label: 'Separar: Kit de acabamento/polimento (Discos, Borrachas, Pastas e Tiras)', category: 'Instrumental' },
-      { id: '6-3', label: 'Materiais: Resinas estéticas de estratificação, Adesivo, Ácido e Caracterizadores', category: 'Material' },
-      { id: '6-4', label: 'Mapeamento de cor antes do isolamento e desidratação dental', category: 'Sequência' },
-      { id: '6-5', label: 'Isolamento do campo e Preparo do substrato dental', category: 'Sequência' },
-      { id: '6-6', label: 'Sistema adesivo e Fotoativação', category: 'Sequência' },
-      { id: '6-7', label: 'Estratificação em camadas (Palatina, Dentina, Efeitos e Esmalte)', category: 'Sequência' },
-      { id: '6-8', label: 'Polimento e caracterização de macro e microtextura superficial', category: 'Sequência' },
-      { id: '6-9', label: 'Ajuste de oclusão e desoclusão', category: 'Sequência' },
-      { id: '6-10', label: 'Conferência: Validação estética e protocolo finalizado', category: 'Conferência' },
+    id: 'raspagem-alisamento-radicular',
+    title: 'Raspagem e Alisamento Radicular (RAR)',
+    category: 'Periodontia',
+    materials: [
+      'EPIs completos e avental impermeável',
+      'Bochecho prévio de Clorexidina 0,12%',
+      'Kit clínico, sonda periodontal OMS e curetas de Gracey específicas (1/2, 5/6, 7/8, 11/12, 13/14)',
+      'Pedra de afiar curetas estéril',
+      'Seringa com soro fisiológico para irrigação das bolsas',
+      'Seringa Carpule e anestésico local'
     ],
+    steps: [
+      { id: 'rar-s1', text: 'Anestesia infiltrativa da região afetada' },
+      { id: 'rar-s2', text: 'Mapeamento e sondagem do nível de inserção clínica' },
+      { id: 'rar-s3', text: 'Raspagem profunda subgengival para remoção de cálculo aderido' },
+      { id: 'rar-s4', text: 'Alisamento radicular suave até obter superfície limpa e lisa' },
+      { id: 'rar-s5', text: 'Irrigação abundante das bolsas periodontais com soro fisiológico' }
+    ]
+  },
+
+  // --- ENDODONTIA (8 e 9) ---
+  {
+    id: 'tratamento-endodontico-unirradicular',
+    title: 'Tratamento Endodôntico de Dente Unirradicular',
+    category: 'Endodontia',
+    materials: [
+      'Kit clínico e EPIs completos',
+      'Kit de isolamento absoluto completo (imprescindível)',
+      'Brocas Endo-Z e esféricas para acesso',
+      'Limas manuais K-File e/ou sistema mecanizado/rotatório',
+      'Localizador apical eletrônico e filme radiográfico/sensor digital',
+      'Seringas com Hipoclorito de Sódio (2,5% ou 5,25%) e EDTA 17%',
+      'Cimento endodôntico, cones de gutapercha e espaçadores'
+    ],
+    steps: [
+      { id: 'endo-s1', text: 'Anestesia e isolamento absoluto rigoroso do dente' },
+      { id: 'endo-s2', text: 'Cirurgia de acesso cavitário e localização do conduto radicular' },
+      { id: 'endo-s3', text: 'Odontometria (determinação do Comprimento de Trabalho com localizador apical)' },
+      { id: 'endo-s4', text: 'Preparo quimicomecânico do conduto com irrigação abundante' },
+      { id: 'endo-s5', text: 'Inativação com EDTA 17% e secagem com pontas de papel absorvente' },
+      { id: 'endo-s6', text: 'Seleção e prova do cone principal de gutapercha (radiografia de prova)' },
+      { id: 'endo-s7', text: 'Obturação do canal com cimento e gutapercha pela técnica de condensação' },
+      { id: 'endo-s8', text: 'Corte da gutapercha, selamento provisório e radiografia final' }
+    ]
   },
   {
-    id: 'troca-restauracao-deficiente',
-    title: 'Troca de Restauração Deficiente',
-    category: 'Dentística',
-    items: [
-      { id: '7-1', label: 'Separar: Kit clínico, Brocas para remoção de restauração e Colher de dentina', category: 'Instrumental' },
-      { id: '7-2', label: 'Separar: Espátula, Matriz, Cunhas, Polimento e Papel carbono', category: 'Instrumental' },
-      { id: '7-3', label: 'Materiais: Novo material restaurador, Adesivo, Ácido e Proteção pulpar', category: 'Material' },
-      { id: '7-4', label: 'Anestesia, Seleção de cor e Isolamento do campo', category: 'Sequência' },
-      { id: '7-5', label: 'Remoção controlada do material deficiente preservando estrutura hígida', category: 'Sequência' },
-      { id: '7-6', label: 'Limpeza, Proteção dentino-pulpar (se necessária) e Adaptação de matriz/cunha', category: 'Sequência' },
-      { id: '7-7', label: 'Condicionamento ácido, Sistema adesivo e Fotoativação', category: 'Sequência' },
-      { id: '7-8', label: 'Restauração incremental, Escultura, Acabamento e Polimento', category: 'Sequência' },
-      { id: '7-9', label: 'Checagem de contatos proximais e Ajuste oclusal com carbono', category: 'Sequência' },
-      { id: '7-10', label: 'Conferência: Procedimento concluído e descarte adequado', category: 'Conferência' },
+    id: 'tratamento-endodontico-multirradicular',
+    title: 'Tratamento Endodôntico de Dente Multirradicular',
+    category: 'Endodontia',
+    materials: [
+      'Kit clínico, EPIs completos e raio-X de diagnóstico',
+      'Kit de isolamento absoluto rigoroso',
+      'Brocas esféricas, Endo-Z e Gates-Glidden/Largo',
+      'Limas K-File, Hedstroem e/ou Limas Rotatórias/Reciprocantes',
+      'Localizador apical, seringas de irrigação, NaOCl e EDTA 17%',
+      'Regua milimetrada endodôntica e pontas de papel absorvente',
+      'Cones de gutapercha (principais e acessórios), cimento endodôntico e condensadores de Paiva'
     ],
+    steps: [
+      { id: 'endom-s1', text: 'Anestesia local eficaz e isolamento absoluto' },
+      { id: 'endom-s2', text: 'Acesso endodôntico e localização das entradas dos canais (3 a 4 condutos)' },
+      { id: 'endom-s3', text: 'Preparo do terço cervical e médio com brocas Gates ou instrumentação mecanizada' },
+      { id: 'endom-s4', text: 'Odontometria eletrônica individual de cada canal' },
+      { id: 'endom-s5', text: 'Preparo apical quimicomecânico com constante irrigação/aspiração de NaOCl' },
+      { id: 'endom-s6', text: 'Protocolo de agitação do EDTA 17% e secagem dos condutos' },
+      { id: 'endom-s7', text: 'Obturação dos canais com cones e cimento endodôntico' },
+      { id: 'endom-s8', text: 'Limpeza da câmara pulpar, selamento provisório hermético e radiografia final' }
+    ]
+  },
+
+  // --- CIRURGIA (10, 11 e 12) ---
+  {
+    id: 'exodontia-simples',
+    title: 'Exodontia Simples (Dentes Anteriores e Pré-Molares)',
+    category: 'Cirurgia',
+    materials: [
+      'EPIs estéreis completos e campo operatório estéril',
+      'Kit clínico e seringa Carpule com agulhas e tubetes anestésicos',
+      'Seringa com soro fisiológico estéril para irrigação',
+      'Sindesmotótomo e alavancas retas (fina, média e larga)',
+      'Fórceps adequados (Ex: 150, 151, 1, 65)',
+      'Cureta de alveóloclis, pinça hemostática e tesoura cirúrgica',
+      'Fio de sutura (Seda 3-0 ou Nylon 4-0), porta-agulhas e gaze estéril'
+    ],
+    steps: [
+      { id: 'exo-s1', text: 'Anti-sepsia intra e extra-oral do paciente' },
+      { id: 'exo-s2', text: 'Anestesia infiltrativa ou bloqueio regional' },
+      { id: 'exo-s3', text: 'Sindesmotomia (descolamento do ligamento periodontal)' },
+      { id: 'exo-s4', text: 'Luxação com alavancas e preensão com fórceps' },
+      { id: 'exo-s5', text: 'Avulsão do dente e inspeção do alvéolo' },
+      { id: 'exo-s6', text: 'Curetagem e irrigação abundante com soro fisiológico' },
+      { id: 'exo-s7', text: 'Compressão das tábuas ósseas, sutura e tamponamento com gaze' }
+    ]
   },
   {
-    id: 'protecao-pulpar-indireta',
-    title: 'Proteção Pulpar Indireta',
-    category: 'Dentística',
-    items: [
-      { id: '8-1', label: 'Separar: Kit clínico, Colher de dentina, Brocas e Aplicadores de material protetor', category: 'Instrumental' },
-      { id: '8-2', label: 'Separar: Espátulas de manipulação, Seringa tríplice e Sucção', category: 'Instrumental' },
-      { id: '8-3', label: 'Materiais: Material de proteção pulpar (ex: Cimento de Hidróxido de Cálcio / CIV)', category: 'Material' },
-      { id: '8-4', label: 'Materiais: Material restaurador para selamento provisório ou definitivo', category: 'Material' },
-      { id: '8-5', label: 'Anestesia local e Isolamento do campo operatório', category: 'Sequência' },
-      { id: '8-6', label: 'Remoção seletiva do tecido cariado profundo (evitando exposição pulpar)', category: 'Sequência' },
-      { id: '8-7', label: 'Limpeza rigorosa da cavidade e confirmação da ausência de exposição pulpar', category: 'Sequência' },
-      { id: '8-8', label: 'Aplicação do material protector sobre a parede de fundo', category: 'Sequência' },
-      { id: '8-9', label: 'Restauração/Selamento hermético da cavidade', category: 'Sequência' },
-      { id: '8-10', label: 'Conferência: Oclusão checada e paciente orientado', category: 'Conferência' },
+    id: 'exodontia-molares-siso',
+    title: 'Exodontia de Molares e Terceiro Molar',
+    category: 'Cirurgia',
+    materials: [
+      'EPIs estéreis cirúrgicos e paramentação completa da equipe',
+      'Bisturi (Lâmina 15 ou 15C) e descolador de Molt',
+      'Kit de osteotomia: Peça reta, brocas Zecrya e 702 cirúrgicas',
+      'Alavancas de Apexo, alavancas Seldin (direita/esquerda) e fórceps 16/17/18R/18L',
+      'Pinça Goiva, lima para osso, soro fisiológico estéril e kit de sutura'
     ],
+    steps: [
+      { id: 'exm-s1', text: 'Planejamento radiográfico, anestesia do nervo alveolar inferior, lingual e bucal' },
+      { id: 'exm-s2', text: 'Incisão e descolamento do retalho mucoperióstico' },
+      { id: 'exm-s3', text: 'Osteotomia e odontossecção (se necessário)' },
+      { id: 'exm-s4', text: 'Luxação e extração do dente ou fragmentos radiculares' },
+      { id: 'exm-s5', text: 'Regularização óssea, limpeza minuciosa e irrigação do alvéolo' },
+      { id: 'exm-s6', text: 'Sutura do retalho e orientações pós-operatórias por escrito' }
+    ]
   },
   {
-    id: 'capeamento-pulpar-direto',
-    title: 'Capeamento Pulpar Direto',
-    category: 'Dentística',
-    items: [
-      { id: '9-1', label: 'Separar: Kit clínico, Colher de dentina e Aplicador de cimento biocompatível', category: 'Instrumental' },
-      { id: '9-2', label: 'Separar: Espátulas, Seringa tríplice, Sucção e Material hemostático', category: 'Instrumental' },
-      { id: '9-3', label: 'Materiais: Material biocompatível (ex: MTA / Cimento Biocerâmico / Hidróxido de Cálcio)', category: 'Material' },
-      { id: '9-4', label: 'Materiais: Material para base protetora e Restauração provisória/definitiva', category: 'Material' },
-      { id: '9-5', label: 'Anestesia local e Isolamento ABSOLUTO do campo operatório', category: 'Sequência' },
-      { id: '9-6', label: 'Identificação da exposição pulpar e Controle da hemorragia/contaminação', category: 'Sequência' },
-      { id: '9-7', label: 'Aplicação do material de capeamento biocompatível diretamente sobre a exposição', category: 'Sequência' },
-      { id: '9-8', label: 'Aplicação da base/cobertura protetora e Selamento coronário imediato', category: 'Sequência' },
-      { id: '9-9', label: 'Ajuste oclusal e Registro em prontuário para acompanhamento radiográfico', category: 'Sequência' },
-      { id: '9-10', label: 'Conferência: Isolamento removido e protocolo de proservação agendado', category: 'Conferência' },
+    id: 'frenectomia-lingual-labial',
+    title: 'Frenectomia (Labial ou Lingual)',
+    category: 'Cirurgia',
+    materials: [
+      'EPIs estéreis e kit cirúrgico',
+      'Cabo de bisturi e lâmina 15C',
+      'Pinça hemostática curva (Halsted/Mosquito)',
+      'Tesoura de Íris / cirúrgica delicada',
+      'Soro fisiológico estéril para irrigação',
+      'Fio de sutura (Resorvível 4-0 ou Nylon 5-0) e porta-agulhas'
     ],
+    steps: [
+      { id: 'fren-s1', text: 'Anti-sepsia e anestesia local nas bases do freio' },
+      { id: 'fren-s2', text: 'Apreensão do freio com a pinça hemostática' },
+      { id: 'fren-s3', text: 'Incisão das inserções superior e inferior ao longo da pinça' },
+      { id: 'fren-s4', text: 'Divulsão delicada das fibras musculares do leito cirúrgico' },
+      { id: 'fren-s5', text: 'Irrigação com soro e sutura simples por pontos isolados' }
+    ]
   },
+
+  // --- ODONTOPEDIATRIA (13 e 14) ---
+  {
+    id: 'exodontia-deciduos',
+    title: 'Exodontia de Dentes Decíduos',
+    category: 'Odontopediatria',
+    materials: [
+      'EPIs completos com abordagem lúdica para o paciente infantil',
+      'Anestésico tópico em gel com aroma',
+      'Seringa Carpule e tubetes anestésicos',
+      'Sindesmotótomo e alavanca reta fina',
+      'Fórceps infantis (Ex: 101 ou fórceps adaptados)',
+      'Gaze estéril e fio de sutura (se necessário)'
+    ],
+    steps: [
+      { id: 'dec-s1', text: 'Manejo comportamental e aplicação do anestésico tópico (2 minutos)' },
+      { id: 'dec-s2', text: 'Anestesia local com técnica suave' },
+      { id: 'dec-s3', text: 'Sindesmotomia cuidadosa para preservar o germe do dente permanente' },
+      { id: 'dec-s4', text: 'Luxação suave e avulsão do dente decíduo' },
+      { id: 'dec-s5', text: 'Inspeção do alvéolo e compressão com gaze para hemostasia' }
+    ]
+  },
+  {
+    id: 'selamento-fissuras',
+    title: 'Aplicação de Selante de Fossas e Fissuras',
+    category: 'Odontopediatria',
+    materials: [
+      'EPIs completos',
+      'Taça de borracha e pedra-pomes sem flúor',
+      'Isolamento do campo (relativo com roletes de algodão ou absoluto)',
+      'Ácido fosfórico 37%',
+      'Selante resinoso ou ionomérico',
+      'Fotopolimerizador e carbono de articulação'
+    ],
+    steps: [
+      { id: 'sel-s1', text: 'Limpeza prévia da superfície oclusal com pedra-pomes e água' },
+      { id: 'sel-s2', text: 'Isolamento adequado e secagem da superfície dental' },
+      { id: 'sel-s3', text: 'Condicionamento ácido por 20 segundos nas fossas e fissuras' },
+      { id: 'sel-s4', text: 'Lavagem abundante e secagem rigorosa (aspecto branco-opaco)' },
+      { id: 'sel-s5', text: 'Aplicação do selante escoando pelas fissuras sem bolhas' },
+      { id: 'sel-s6', text: 'Fotopolimerização e verificação de oclusão com carbono' }
+    ]
+  },
+
+  // --- PRÓTESE DENTÁRIA (15 e 16) ---
+  {
+    id: 'moldagem-estudo',
+    title: 'Moldagem de Estudo com Alginato',
+    category: 'Prótese Dentária',
+    materials: [
+      'EPIs completos e cuba de borracha com espátula de alginato',
+      'Medidores de água e pó de alginato',
+      'Alginato de alta precisão',
+      'Moldeiras de estoque perfuradas (superior e inferior)',
+      'Gesso pedra tipo III ou IV e medidores para vazamento'
+    ],
+    steps: [
+      { id: 'mold-s1', text: 'Provar e selecionar a moldeira de estoque adequada à arcada do paciente' },
+      { id: 'mold-s2', text: 'Manipular o alginato respeitando a proporção água/pó recomendada pelo fabricante' },
+      { id: 'mold-s3', text: 'Carregar a moldeira uniformemente' },
+      { id: 'mold-s4', text: 'Inserção e centralização na boca do paciente até a presa do material' },
+      { id: 'mold-s5', text: 'Remoção rápida com movimento único, lavagem e desinfecção do molde' },
+      { id: 'mold-s6', text: 'Vazamento imediato com gesso pedra para evitar sinérese/embebição' }
+    ]
+  },
+  {
+    id: 'cimentacao-provisoria-definitiva',
+    title: 'Cimentação de Prótese Fixa / Coroa',
+    category: 'Prótese Dentária',
+    materials: [
+      'Kit clínico e EPIs completos',
+      'Peça de prótese tratada/limpa',
+      'Fio retrator e pasta profilática sem óleo',
+      'Cimento definitivo (Resinoso ou Ionômero de Vidro) ou Provisório',
+      'Espátula de manipulação e bloco de espatulação',
+      'Fio dental, sonda e fotopolimerizador (se cimento resinoso)',
+      'Carbono de articulação e pinça Miller'
+    ],
+    steps: [
+      { id: 'cim-s1', text: 'Prova seca da peça (checagem de adaptação marginal e ponto de contato)' },
+      { id: 'cim-s2', text: 'Ajuste oclusal preliminar e limpeza interna da restauração/coroa' },
+      { id: 'cim-s3', text: 'Limpeza e isolamento do elemento dental preparado' },
+      { id: 'cim-s4', text: 'Manipulação e aplicação do cimento no interior da peça' },
+      { id: 'cim-s5', text: 'Assentamento firme da peça sobre o dente até a presa do cimento' },
+      { id: 'cim-s6', text: 'Remoção rigorosa de todos os excessos de cimento interproximais e subgengivais' },
+      { id: 'cim-s7', text: 'Checagem final da oclusão' }
+    ]
+  },
+
+  // --- ORTODONTIA (17) ---
+  {
+    id: 'colagem-brackets',
+    title: 'Colagem Direta de Brackets Ortodônticos',
+    category: 'Ortodontia',
+    materials: [
+      'EPIs completos e afastador labial',
+      'Pedra-pomes e taça de borracha para profilaxia prévia',
+      'Ácido fosfórico 37% e adesivo ortodôntico (primer)',
+      'Resina ortodôntica de fotopolimerização',
+      'Kit de brackets, posicionador de hyslex/gauge e pinça porta-bracket',
+      'Sonda exploradora para remoção de excessos e fotopolimerizador'
+    ],
+    steps: [
+      { id: 'orto-s1', text: 'Profilaxia com pedra-pomes e inserção do afastador labial' },
+      { id: 'orto-s2', text: 'Condicionamento ácido do esmalte por 15 a 20 segundos' },
+      { id: 'orto-s3', text: 'Lavagem, secagem e aplicação do primer ortodôntico' },
+      { id: 'orto-s4', text: 'Aplicação da resina na base do bracket e posicionamento no dente com o gauge' },
+      { id: 'orto-s5', text: 'Remoção de todo o excesso de resina ao redor da base com sonda' },
+      { id: 'orto-s6', text: 'Fotopolimerização individual de cada bracket (mesial e distal)' }
+    ]
+  },
+
+  // --- URGÊNCIA ODONTOLÓGICA (18) ---
+  {
+    id: 'pulpotomia-urgencia',
+    title: 'Pulpotomia / Alívio de Dor de Urgência',
+    category: 'Urgência',
+    materials: [
+      'EPIs completos e kit clínico',
+      'Kit de isolamento absoluto',
+      'Brocas esféricas e cureta de dentina afiada',
+      'Soro fisiológico estéril e bolinhas de algodão estéreis',
+      'Medicação intracanal (OTOSPORIN / Formocresol / Hidróxido de Cálcio)',
+      'Cimento restaurador provisório (IRM ou Cimento de Ionômero de Vidro)'
+    ],
+    steps: [
+      { id: 'urg-s1', text: 'Anestesia local eficaz e isolamento absoluto do dente' },
+      { id: 'urg-s2', text: 'Abertura coronária e remoção do teto da câmara pulpar' },
+      { id: 'urg-s3', text: 'Curetagem/remoção da polpa coronária com cureta afiada' },
+      { id: 'urg-s4', text: 'Hemostasia da polpa radicular com bolinha de algodão estéril e soro' },
+      { id: 'urg-s5', text: 'Aplicação do agente curativo sobre os cotos pulpares' },
+      { id: 'urg-s6', text: 'Selamento hermético da cavidade com restaurador provisório' }
+    ]
+  }
 ];
-
-// --- PROFILAXIA ODONTOLÓGICA ---
-{
-  id: 'profilaxia-odontologica',
-  title: 'Profilaxia Odontológica',
-  category: 'Profilaxia',
-  items: [
-    { id: 'prof-1', label: 'Separar instrumentais: Espelho, Sonda exploratória, Pinça clínica, Sonda periodontal, Instrumentais manuais de raspagem, Taça de borracha/escova de Robinson e Contra-ângulo' },
-    { id: 'prof-2', label: 'Separar materiais: Pasta profilática, Fio dental, Gaze, Copos descartáveis e Solução de limpeza' },
-    { id: 'prof-3', label: 'Antes de iniciar: Confirmar identificação do paciente, indicação clínica e realizar avaliação inicial (biofilme, cálculo, manchas e sensibilidade)' },
-    { id: 'prof-4', label: 'Posicionar o paciente adequadamente e realizar limpeza/higiene inicial' },
-    { id: 'prof-5', label: 'Realizar remoção de cálculo quando indicada' },
-    { id: 'prof-6', label: 'Realizar profilaxia com instrumento rotatório e pasta profilática em movimentos controlados' },
-    { id: 'prof-7', label: 'Limpeza de regiões de difícil acesso e passar fio dental nas regiões interproximais' },
-    { id: 'prof-8', label: 'Irrigar, enxaguar e remover resíduos; conferir visualmente as superfícies dentárias' },
-    { id: 'prof-9', label: 'Orientações ao paciente: Higiene diária, técnica de escovação, uso de fio dental e cuidados alimentares' },
-    { id: 'prof-10', label: 'Conferência final: Organizar campo operatório, encaminhar instrumentais para esterilização e registrar no prontuário' }
-  ]
-},
-
-// --- CIRURGIA ODONTOLÓGICA / EXODONTIAS BÁSICAS ---
-{
-  id: 'exodontia-anteriores-superiores',
-  title: 'Exodontia de Dentes Permanentes Anteriores Superiores',
-  category: 'Cirurgia',
-  items: [
-    { id: 'exo-ans-1', label: 'Separar instrumentais: Espelho, Sonda, Pinça, Descolador/Periótomo, Elevador reto, Fórceps adequado, Cureta alveolar, Porta-agulha, Tesoura e Carpule' },
-    { id: 'exo-ans-2', label: 'Separar materiais: Anestésico tópico/local, Gaze estéril, Solução para irrigação e Fio de sutura' },
-    { id: 'exo-ans-3', label: 'Confirmar indicação, avaliação clínica/radiográfica e conferir dente a ser removido' },
-    { id: 'exo-ans-4', label: 'Realizar anestesia tópica e local; confirmar anestesia profunda antes de iniciar' },
-    { id: 'exo-ans-5', label: 'Realizar sindesmotomia e luxação progressiva com instrumento adequado' },
-    { id: 'exo-ans-6', label: 'Adaptar fórceps e realizar movimentos controlados conforme a anatomia radicular até a remoção' },
-    { id: 'exo-ans-7', label: 'Inspecionar dente removido, avaliar alvéolo, irrigar e realizar curetagem se houver indicação' },
-    { id: 'exo-ans-8', label: 'Realizar sutura (se indicada) e promover hemostasia por compressão com gaze' },
-    { id: 'exo-ans-9', label: 'Prescrever medicações (se necessário), orientar cuidados pós-operatórios e registrar no prontuário' }
-  ]
-},
-{
-  id: 'exodontia-anteriores-inferiores',
-  title: 'Exodontia de Dentes Permanentes Anteriores Inferiores',
-  category: 'Cirurgia',
-  items: [
-    { id: 'exo-ani-1', label: 'Separar instrumentais e materiais específicos para anteriores inferiores' },
-    { id: 'exo-ani-2', label: 'Confirmar avaliação clínica/radiográfica e elemento dental correto' },
-    { id: 'exo-ani-3', label: 'Executar técnica anestésica e confirmar anestesia adequada' },
-    { id: 'exo-ani-4', label: 'Realizar sindesmotomia, luxação progressiva e adaptar fórceps específico' },
-    { id: 'exo-ani-5', label: 'Executar movimentos compatíveis com a anatomia e remover o dente' },
-    { id: 'exo-ani-6', label: 'Conferir integridade do dente, avaliar alvéolo, irrigar e suturar se necessário' },
-    { id: 'exo-ani-7', label: 'Promover hemostasia por compressão e verificar sítio cirúrgico' },
-    { id: 'exo-ani-8', label: 'Fornecer orientações pós-operatórias (reposo, alimentação, higiene) e registrar em prontuário' }
-  ]
-},
-{
-  id: 'exodontia-pre-molares-superiores',
-  title: 'Exodontia de Pré-Molares Superiores',
-  category: 'Cirurgia',
-  items: [
-    { id: 'exo-pms-1', label: 'Separar kit cirúrgico e fórceps específico para pré-molares superiores' },
-    { id: 'exo-pms-2', label: 'Confirmar diagnóstico radiográfico do elemento e anestesiar' },
-    { id: 'exo-pms-3', label: 'Sindesmotomia e luxação progressiva com elevador reto' },
-    { id: 'exo-pms-4', label: 'Aplicações de forças controladas com fórceps respeitando a anatomia das raízes' },
-    { id: 'exo-pms-5', label: 'Remoção do dente, inspeção de integridade radicular e inspeção do alvéolo' },
-    { id: 'exo-pms-6', label: 'Irrigação, sutura (se indicada) e hemostasia com compressa de gaze' },
-    { id: 'exo-pms-7', label: 'Passar recomendações pós-operatórias ao paciente e registrar o procedimento' }
-  ]
-},
-{
-  id: 'exodontia-pre-molares-inferiores',
-  title: 'Exodontia de Pré-Molares Inferiores',
-  category: 'Cirurgia',
-  items: [
-    { id: 'exo-pmi-1', label: 'Separar instrumentais e fórceps específico para pré-molares inferiores' },
-    { id: 'exo-pmi-2', label: 'Conferir radiografia, dente correto e realizar anestesia local' },
-    { id: 'exo-pmi-3', label: 'Realizar desinserção das fibras (sindesmotomia) e luxação' },
-    { id: 'exo-pmi-4', label: 'Adaptar fórceps e realizar movimentos adequados à anatomia radicular' },
-    { id: 'exo-pmi-5', label: 'Extração do dente, avaliação alveolar e remoção de fragmentos/tecido se indicado' },
-    { id: 'exo-pmi-6', label: 'Irrigação com solução estéril, hemostasia e sutura quando necessária' },
-    { id: 'exo-pmi-7', label: 'Orientar cuidados com o coágulo/medicação e fazer registro no prontuário' }
-  ]
-},
-{
-  id: 'exodontia-molares-superiores',
-  title: 'Exodontia de Molares Superiores',
-  category: 'Cirurgia',
-  items: [
-    { id: 'exo-ms-1', label: 'Separar elevadores e fórceps específico para molares superiores (direito/esquerdo)' },
-    { id: 'exo-ms-2', label: 'Avaliar proximidade com o seio maxilar na radiografia e realizar anestesia' },
-    { id: 'exo-ms-3', label: 'Sindesmotomia cuidadosa e luxação progressiva com alavancas/elevadores' },
-    { id: 'exo-ms-4', label: 'Adaptar fórceps de molares e realizar movimentos vestíbulo-palatinos controlados' },
-    { id: 'exo-ms-5', label: 'Remoção do elemento e conferência minuciosa da integridade das 3 raízes' },
-    { id: 'exo-ms-6', label: 'Avaliação do alvéolo, irrigação abundante, sutura e hemostasia por compressão' },
-    { id: 'exo-ms-7', label: 'Orientar o paciente sobre cuidados pós-cirúrgicos e registrar em prontuário' }
-  ]
-},
-{
-  id: 'exodontia-molares-inferiores',
-  title: 'Exodontia de Molares Inferiores',
-  category: 'Cirurgia',
-  items: [
-    { id: 'exo-mi-1', label: 'Separar fórceps de molares inferiores (ex: nº 17 ou cuerno de vaca / nº 23) e elevadores' },
-    { id: 'exo-mi-2', label: 'Avaliação clínica/radiográfica da anatomia radicular e anestesia local' },
-    { id: 'exo-mi-3', label: 'Sindesmotomia, luxação com elevador e adaptação do fórceps' },
-    { id: 'exo-mi-4', label: 'Movimentos vestíbulo-linguais controlados até a extração completa' },
-    { id: 'exo-mi-5', label: 'Conferir integridade das raízes, inspecionar alvéolo e irrigar' },
-    { id: 'exo-mi-6', label: 'Sutura (se necessária) e compressão com gaze para hemostasia' },
-    { id: 'exo-mi-7', label: 'Prescrição de medicação, orientações pós-operatórias e anotação em prontuário' }
-  ]
-},
-{
-  id: 'exodontia-dentes-deciduos',
-  title: 'Exodontia de Dentes Decíduos',
-  category: 'Cirurgia Pediatria',
-  items: [
-    { id: 'exo-dec-1', label: 'Separar fórceps infantil, elevador pequeno e kit de anestesia' },
-    { id: 'exo-dec-2', label: 'Avaliar estágio de esfoliação e relação com o germe do permanente (radiografia)' },
-    { id: 'exo-dec-3', label: 'Realizar anestesia tópica e local com dosagem infantil adequada' },
-    { id: 'exo-dec-4', label: 'Sindesmotomia leve e luxação controlada respeitando a anatomia do decíduo' },
-    { id: 'exo-dec-5', label: 'Adaptação do fórceps infantil e remoção do dente sem danificar o sucessor' },
-    { id: 'exo-dec-6', label: 'Inspeção do alvéolo, verificação de fragmentos e hemostasia com gaze' },
-    { id: 'exo-dec-7', label: 'Reforçar orientações pós-operatórias ao responsável e registrar no prontuário' }
-  ]
-},
-{
-  id: 'exodontia-terceiro-molar-superior-simples',
-  title: 'Exodontia de Terceiro Molar Superior Erupcionado Simples',
-  category: 'Cirurgia',
-  items: [
-    { id: 'exo-3m-1', label: 'Separar fórceps para 3º molar superior (ex: nº 210 ou bajoneta) e alavancas' },
-    { id: 'exo-3m-2', label: 'Confirmar que o dente está erupcionado e sem necessidade de osteotomia/odontosecção' },
-    { id: 'exo-3m-3', label: 'Anestesia infiltrativa/bloqueio eficiente da região' },
-    { id: 'exo-3m-4', label: 'Sindesmotomia e luxação com elevadores adequados ao acesso posterior' },
-    { id: 'exo-3m-5', label: 'Aplicações de forças de apreensão com fórceps e remoção do dente' },
-    { id: 'exo-3m-6', label: 'Conferir dente e alvéolo, irrigar, suturar se necessário e promover hemostasia' },
-    { id: 'exo-3m-7', label: 'Instruções pós-operatórias, prescrição medicamentosa e registro em prontuário' }
-  ]
-}
